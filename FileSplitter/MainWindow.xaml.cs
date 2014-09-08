@@ -19,9 +19,31 @@ namespace FileSplitter
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ISplitterViewModel viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
+            viewModel = (ISplitterViewModel)Resources["ViewModel"];
+        }
+        
+        private void split_Click(object sender, RoutedEventArgs e)
+        {
+            var syncSplitter = viewModel as SplitterViewModel;
+            if (syncSplitter != null)
+            {
+                syncSplitter.SplitSync();
+            }
+        }
+
+        private void browseFile_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.FilePath = OpenBrowser.GetPath();
+        }
+
+        private void browseOutput_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.OutputPath = OpenBrowser.GetPath();
         }
     }
 }

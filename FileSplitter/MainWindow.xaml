@@ -1,8 +1,64 @@
 ﻿<Window x:Class="FileSplitter.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        xmlns:res="clr-namespace:FileSplitter.Resources"
+        xmlns:local="clr-namespace:FileSplitter"
+        Title=""
+        Height="150" Width="525">
+    <Window.Resources>
+        <local:SplitterViewModel x:Key="ViewModel"/>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" SharedSizeGroup="pathRowHeight"/>
+            <RowDefinition Height="1*" SharedSizeGroup="pathRowHeight"/>
+            <RowDefinition Height="1*" SharedSizeGroup="splitRowHeight"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition SharedSizeGroup="pathRowHeight"/>
+                <RowDefinition SharedSizeGroup="pathRowHeight"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" SharedSizeGroup="labelColWidth"/>
+                <ColumnDefinition Width="5*" SharedSizeGroup="pathColWidth"/>
+                <ColumnDefinition Width="2*" SharedSizeGroup="browseColWidth"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{DynamicResource res:MainWindowStrings.FilePath}"/>
+            <TextBox Text="{Binding FilePath,
+                            Source={StaticResource ViewModel},
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Column="1"/>
+            <Button Name="browseFile"
+                    Grid.Column="2"
+                    Click="browseFile_Click"/>
+            <TextBlock Grid.Row="1"
+                       Text="{DynamicResource res:MainWindowStrings.OutputPath}"/>
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     Text="{Binding OutputPath,
+                            Source={StaticResource ViewModel},
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Name="browseOutput"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Click="browseOutput_Click"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" SharedSizeGroup="sizeColWidth"/>
+                <ColumnDefinition Width="1*" SharedSizeGroup="splitColWidth"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Text="{Binding ChunkSize,
+                                    Source={StaticResource ViewModel},
+                                    Mode=OneWayToSource,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Name="split" Content="{DynamicResource res:MainWindowStrings.Split}"
+                    Click="split_Click"
+                    IsDefault="True"
+                    Grid.Column="1"/>
+        </Grid>
     </Grid>
 </Window>

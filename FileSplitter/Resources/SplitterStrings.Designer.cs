@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FileSplitter.Properties {
+namespace FileSplitter.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace FileSplitter.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    public class SplitterStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal SplitterStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace FileSplitter.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FileSplitter.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FileSplitter.Resources.SplitterStrings", typeof(SplitterStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,11 @@ namespace FileSplitter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File Splitter.
+        ///   Looks up a localized string similar to {0}.{1}.
         /// </summary>
-        public static string Title {
+        public static string ChunkPathFormat {
             get {
-                return ResourceManager.GetString("Title", resourceCulture);
+                return ResourceManager.GetString("ChunkPathFormat", resourceCulture);
             }
         }
     }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FileSplitter.Properties {
+namespace FileSplitter.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace FileSplitter.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    public class MainWindowStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal MainWindowStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace FileSplitter.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FileSplitter.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FileSplitter.Resources.MainWindowStrings", typeof(MainWindowStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,38 @@ namespace FileSplitter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File Splitter.
+        ///   Looks up a localized string similar to Chunk Size.
         /// </summary>
-        public static string Title {
+        public static string ChunkSize {
             get {
-                return ResourceManager.GetString("Title", resourceCulture);
+                return ResourceManager.GetString("ChunkSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Path.
+        /// </summary>
+        public static string FilePath {
+            get {
+                return ResourceManager.GetString("FilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output Path.
+        /// </summary>
+        public static string OutputPath {
+            get {
+                return ResourceManager.GetString("OutputPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split.
+        /// </summary>
+        public static string Split {
+            get {
+                return ResourceManager.GetString("Split", resourceCulture);
             }
         }
     }

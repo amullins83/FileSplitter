@@ -3,62 +3,128 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:res="clr-namespace:FileSplitter.Resources"
         xmlns:local="clr-namespace:FileSplitter"
-        Title=""
-        Height="150" Width="525">
+        Title="{x:Static res:MainWindowStrings.Title}"
+        Height="300" Width="525">
     <Window.Resources>
-        <local:SplitterViewModel x:Key="ViewModel"/>
+        <local:SplitterViewModel x:Key="SplitterViewModel"/>
+        <local:CombinerViewModel x:Key="CombinerViewModel"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" SharedSizeGroup="pathRowHeight"/>
-            <RowDefinition Height="1*" SharedSizeGroup="pathRowHeight"/>
-            <RowDefinition Height="1*" SharedSizeGroup="splitRowHeight"/>
+            <RowDefinition Height="1*" SharedSizeGroup="sectionHeight"/>
+            <RowDefinition Height="1*" SharedSizeGroup="sectionHeight"/>
         </Grid.RowDefinitions>
-        <Grid Grid.RowSpan="2">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition SharedSizeGroup="pathRowHeight"/>
-                <RowDefinition SharedSizeGroup="pathRowHeight"/>
+                <RowDefinition Height="1*" SharedSizeGroup="nameRowHeight"/>
+                <RowDefinition Height="1*" SharedSizeGroup="pathRowHeight"/>
+                <RowDefinition Height="1*" SharedSizeGroup="pathRowHeight"/>
+                <RowDefinition Height="1*" SharedSizeGroup="splitRowHeight"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" SharedSizeGroup="labelColWidth"/>
-                <ColumnDefinition Width="5*" SharedSizeGroup="pathColWidth"/>
-                <ColumnDefinition Width="2*" SharedSizeGroup="browseColWidth"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="{DynamicResource res:MainWindowStrings.FilePath}"/>
-            <TextBox Text="{Binding FilePath,
-                            Source={StaticResource ViewModel},
+            <TextBlock Text="{x:Static res:SplitterStrings.SplitFiles}"/>
+            <Grid Grid.RowSpan="2" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition SharedSizeGroup="pathRowHeight"/>
+                    <RowDefinition SharedSizeGroup="pathRowHeight"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" SharedSizeGroup="labelColWidth"/>
+                    <ColumnDefinition Width="5*" SharedSizeGroup="pathColWidth"/>
+                    <ColumnDefinition Width="2*" SharedSizeGroup="browseColWidth"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{x:Static res:SplitterStrings.FilePath}"/>
+                <TextBox Text="{Binding FilePath,
+                            Source={StaticResource SplitterViewModel},
                             Mode=TwoWay,
                             UpdateSourceTrigger=PropertyChanged}"
                      Grid.Column="1"/>
-            <Button Name="browseFile"
+                <Button Name="browseFile"
                     Grid.Column="2"
+                    Content="{x:Static res:SplitterStrings.Browse}"
                     Click="browseFile_Click"/>
-            <TextBlock Grid.Row="1"
-                       Text="{DynamicResource res:MainWindowStrings.OutputPath}"/>
-            <TextBox Grid.Row="1"
+                <TextBlock Grid.Row="1"
+                       Text="{x:Static res:SplitterStrings.OutputPath}"/>
+                <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Text="{Binding OutputPath,
-                            Source={StaticResource ViewModel},
+                            Source={StaticResource SplitterViewModel},
                             Mode=TwoWay,
                             UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Name="browseOutput"
+                <Button Name="browseOutput"
                     Grid.Row="1"
                     Grid.Column="2"
+                    Content="{x:Static res:SplitterStrings.Browse}"
                     Click="browseOutput_Click"/>
-        </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" SharedSizeGroup="sizeColWidth"/>
-                <ColumnDefinition Width="1*" SharedSizeGroup="splitColWidth"/>
-            </Grid.ColumnDefinitions>
-            <TextBox Text="{Binding ChunkSize,
-                                    Source={StaticResource ViewModel},
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="sizeColWidth"/>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="splitColWidth"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Text="{Binding ChunkSize,
+                                    Source={StaticResource SplitterViewModel},
                                     Mode=OneWayToSource,
                                     UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Name="split" Content="{DynamicResource res:MainWindowStrings.Split}"
+                <Button Name="split" Content="{x:Static res:SplitterStrings.Split}"
                     Click="split_Click"
                     IsDefault="True"
                     Grid.Column="1"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" SharedSizeGroup="nameRowHeight"/>
+                <RowDefinition Height="1*" SharedSizeGroup="pathRowHeight"/>
+                <RowDefinition Height="4*" SharedSizeGroup="pathListRowHeight"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{x:Static res:CombinerStrings.CombineFiles}"/>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition SharedSizeGroup="pathRowHeight"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" SharedSizeGroup="labelColWidth"/>
+                    <ColumnDefinition Width="5*" SharedSizeGroup="pathColWidth"/>
+                    <ColumnDefinition Width="2*" SharedSizeGroup="browseColWidth"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{x:Static res:CombinerStrings.CombinedPath}"/>
+                <TextBox Text="{Binding CombinedPath,
+                            Source={StaticResource CombinerViewModel},
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Column="1"/>
+                <Button Name="browseCombinedFile"
+                    Content="{x:Static res:CombinerStrings.Browse}"
+                    Grid.Column="2"
+                    Click="browseCombinedFile_Click"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" SharedSizeGroup="pathRowHeight"/>
+                    <RowDefinition Height="3*" SharedSizeGroup="listBoxRowHeight"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Name="addSplitPath"
+                        Content="{x:Static res:CombinerStrings.AddSplitPaths}"
+                        Click="addSplitPath_Click"/>
+                    <Button Name="removeSplitPaths" Grid.Column="1"
+                        Content="{x:Static res:CombinerStrings.RemoveSplitPaths}"
+                        Click="removeSplitPaths_Click"/>
+                    <Button Name="combine" Grid.Column="2"
+                            Content="{x:Static res:CombinerStrings.CombineFiles}"
+                            Click="combine_Click"/>
+                </Grid>
+                <ListBox Grid.Row="1" Grid.ColumnSpan="2" Name="pathsBox"
+                     ItemsSource="{Binding SplitPaths,
+                                    Source={StaticResource CombinerViewModel}}"
+                     SelectionMode="Multiple"/>
+            </Grid>
+            
         </Grid>
     </Grid>
 </Window>

@@ -117,8 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Browse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
   <data name="ChunkPathFormat" xml:space="preserve">
     <value>{0}.{1}</value>
     <comment>Expects an output file string and a chunk index</comment>
+  </data>
+  <data name="ChunkSize" xml:space="preserve">
+    <value>Chunk Size</value>
+  </data>
+  <data name="FilePath" xml:space="preserve">
+    <value>File Path</value>
+  </data>
+  <data name="OutputPath" xml:space="preserve">
+    <value>Output Path</value>
+  </data>
+  <data name="Split" xml:space="preserve">
+    <value>Split</value>
+  </data>
+  <data name="SplitFiles" xml:space="preserve">
+    <value>Split Files</value>
   </data>
 </root>

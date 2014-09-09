@@ -61,11 +61,65 @@ namespace FileSplitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browse.
+        /// </summary>
+        public static string Browse {
+            get {
+                return ResourceManager.GetString("Browse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}.{1}.
         /// </summary>
         public static string ChunkPathFormat {
             get {
                 return ResourceManager.GetString("ChunkPathFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chunk Size.
+        /// </summary>
+        public static string ChunkSize {
+            get {
+                return ResourceManager.GetString("ChunkSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Path.
+        /// </summary>
+        public static string FilePath {
+            get {
+                return ResourceManager.GetString("FilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output Path.
+        /// </summary>
+        public static string OutputPath {
+            get {
+                return ResourceManager.GetString("OutputPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split.
+        /// </summary>
+        public static string Split {
+            get {
+                return ResourceManager.GetString("Split", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split Files.
+        /// </summary>
+        public static string SplitFiles {
+            get {
+                return ResourceManager.GetString("SplitFiles", resourceCulture);
             }
         }
     }

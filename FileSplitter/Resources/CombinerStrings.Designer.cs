@@ -22,14 +22,14 @@ namespace FileSplitter.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MainWindowStrings {
+    public class CombinerStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MainWindowStrings() {
+        internal CombinerStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace FileSplitter.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FileSplitter.Resources.MainWindowStrings", typeof(MainWindowStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FileSplitter.Resources.CombinerStrings", typeof(CombinerStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,56 @@ namespace FileSplitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File Splitter/Combiner.
+        ///   Looks up a localized string similar to Add Split Paths.
         /// </summary>
-        public static string Title {
+        public static string AddSplitPaths {
             get {
-                return ResourceManager.GetString("Title", resourceCulture);
+                return ResourceManager.GetString("AddSplitPaths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse.
+        /// </summary>
+        public static string Browse {
+            get {
+                return ResourceManager.GetString("Browse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Combined Path.
+        /// </summary>
+        public static string CombinedPath {
+            get {
+                return ResourceManager.GetString("CombinedPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Combine Files.
+        /// </summary>
+        public static string CombineFiles {
+            get {
+                return ResourceManager.GetString("CombineFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Split Paths.
+        /// </summary>
+        public static string RemoveSplitPaths {
+            get {
+                return ResourceManager.GetString("RemoveSplitPaths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split Paths.
+        /// </summary>
+        public static string SplitPaths {
+            get {
+                return ResourceManager.GetString("SplitPaths", resourceCulture);
             }
         }
     }

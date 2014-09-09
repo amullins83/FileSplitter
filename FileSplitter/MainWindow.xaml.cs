@@ -19,31 +19,70 @@ namespace FileSplitter
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ISplitterViewModel viewModel;
+        private ISplitterViewModel splitterViewModel;
+        private ICombinerViewModel combinerViewModel;
 
         public MainWindow()
         {
             InitializeComponent();
-            viewModel = (ISplitterViewModel)Resources["ViewModel"];
+            splitterViewModel = (ISplitterViewModel)Resources["SplitterViewModel"];
+            combinerViewModel = (ICombinerViewModel)Resources["CombinerViewModel"];
         }
         
         private void split_Click(object sender, RoutedEventArgs e)
         {
-            var syncSplitter = viewModel as SplitterViewModel;
-            if (syncSplitter != null)
-            {
-                syncSplitter.SplitSync();
-            }
+            var vm = (SplitterViewModel)splitterViewModel;
+            var split = new Action(vm.SplitSync);
+            split.BeginInvoke(null, null);
         }
 
         private void browseFile_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.FilePath = OpenBrowser.GetPath();
+            splitterViewModel.FilePath = OpenBrowser.GetPath();
         }
 
         private void browseOutput_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.OutputPath = OpenBrowser.GetPath();
+            splitterViewModel.OutputPath = OpenBrowser.GetSavePath();
+        }
+
+        private void browseCombinedFile_Click(object sender, RoutedEventArgs e)
+        {
+            combinerViewModel.CombinedPath = OpenBrowser.GetSavePath();
+        }
+
+        private void addSplitPath_Click(object sender, RoutedEventArgs e)
+        {
+            string[] paths = OpenBrowser.GetPaths();
+            if(paths != null)
+            {
+                foreach (string path in paths)
+                {
+                    combinerViewModel.SplitPaths.Add(path);
+                }
+            }
+        }
+
+        private void removeSplitPaths_Click(object sender, RoutedEventArgs e)
+        {
+            var removeList = new List<string>();
+
+            foreach(var item in pathsBox.SelectedItems)
+            {
+                removeList.Add((string)item);
+            }
+
+            foreach(var item in removeList)
+            {
+                combinerViewModel.SplitPaths.Remove(item);
+            }
+        }
+
+        private void combine_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = (CombinerViewModel)combinerViewModel;
+            var combine = new Action(vm.CombineSync);
+            combine.BeginInvoke(null, null);
         }
     }
 }

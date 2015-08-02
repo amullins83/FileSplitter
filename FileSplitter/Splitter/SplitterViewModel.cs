@@ -1,31 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-
-namespace FileSplitter
+﻿namespace WalkeDesigns.FileSplitter
 {
-    public class SplitterViewModel : ISplitterViewModel
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Interfaces;
+    using Wpf;
+
+    public class SplitterViewModel : Model, ISplitterViewModel
     {
+        /// <summary>
+        ///  The file splitter to perform the split task.
+        /// </summary>
+        private Splitter splitter;
+
+        /// <summary>
+        ///  The size of the split files.
+        /// </summary>
+        private int chunkSize;
+
+        /// <summary>
+        ///  The source file path.
+        /// </summary>
         private string filePath;
+
+        /// <summary>
+        ///  The destination file base path.
+        /// </summary>
+        private string outputPath;
+
+        /// <summary>
+        ///  The progress report provider.
+        /// </summary>
+        private IProgress<int> progress;
+        
+        /// <summary>
+        ///  Gets or sets the source file path.
+        /// </summary>
         public string FilePath {
             get
             {
                 return filePath;
             }
+
             set
             {
                 if(filePath != value)
                 {
                     filePath = value;
-                    OnPropertyChanged("FilePath");
+                    Update("FilePath");
                 }
             }
         }
 
-        private string outputPath;
+        /// <summary>
+        ///  Gets or sets the output file base path.
+        /// </summary>
         public string OutputPath
         {
             get
@@ -37,46 +69,70 @@ namespace FileSplitter
                 if (outputPath != value)
                 {
                     outputPath = value;
-                    OnPropertyChanged("OutputPath");
+                    Update("OutputPath");
                 }
             }
         }
 
-        private int chunkSize;
+        /// <summary>
+        ///  Gets or sets the size of the split files.
+        /// </summary>
         public int ChunkSize
         {
             get
             {
                 return chunkSize;
             }
+
             set
             {
                 if (chunkSize != value)
                 {
                     chunkSize = value;
-                    OnPropertyChanged("ChunkSize");
+                    Update("ChunkSize");
                 }
             }
         }
 
-        public async Task Split()
+        /// <summary>
+        ///  Gets or sets the progress provider.
+        /// </summary>
+        public IProgress<int> ProgressReporter
         {
-            await Splitter.Split(filePath, outputPath, chunkSize);
-        }
-
-        public void SplitSync()
-        {
-            Splitter.SplitSync(filePath, outputPath, chunkSize);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string name)
-        {
-            var propChanged = PropertyChanged;
-            if(propChanged != null)
+            get
             {
-                propChanged(this, new PropertyChangedEventArgs(name));
+                return progress;
+            }
+
+            set
+            {
+                if (progress != value)
+                {
+                    progress = value;
+                    Update("ProgressReporter");
+                }
+            }
+        }
+
+        /// <summary>
+        ///  Perform the split operation, directing progress updates to the
+        ///  given progress reporter.
+        /// </summary>
+        public void Split()
+        {
+            splitter =
+                new Splitter(filePath, outputPath, chunkSize, progress);
+            splitter.Split();
+        }
+
+        /// <summary>
+        ///  Cancel the split operation.
+        /// </summary>
+        public void Cancel()
+        {
+            if (splitter != null && !splitter.IsDone)
+            {
+                splitter.Cancel();
             }
         }
     }

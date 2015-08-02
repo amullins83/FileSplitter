@@ -1,0 +1,26 @@
+﻿<Window x:Class="WalkeDesigns.FileSplitter.ProgressReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:res="clr-namespace:WalkeDesigns.FileSplitter.Resources"
+        Title="ProgressReportWindow" Height="210" Width="300"
+        ShowInTaskbar="False"
+        Topmost="True" WindowStartupLocation="CenterOwner"
+        WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="75" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding TaskName}"
+                   TextAlignment="Center"
+                   FontSize="24pt"
+                   VerticalAlignment="Center"/>
+        <ProgressBar Grid.Row="1"
+                     Value="{Binding PercentComplete, Mode=OneWay}"/>
+        <Button Grid.Row="2"
+                Content="{x:Static res:ProgressWindowStrings.Cancel}"
+                Click="Cancel"
+                FontSize="32pt"/>
+    </Grid>
+</Window>

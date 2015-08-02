@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FileSplitter")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("WalkeDesigns.FileSplitter")]
+[assembly: AssemblyDescription("A file splitter/combiner")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FileSplitter")]
+[assembly: AssemblyCompany("Walke Designs")]
+[assembly: AssemblyProduct("WalkeDesigns.FileSplitter")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

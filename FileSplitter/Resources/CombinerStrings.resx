@@ -135,4 +135,7 @@
   <data name="SplitPaths" xml:space="preserve">
     <value>Split Paths</value>
   </data>
+  <data name="FileError" xml:space="preserve">
+    <value>An error ocurred while combining files.</value>
+  </data>
 </root>

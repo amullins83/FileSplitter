@@ -7,8 +7,8 @@
     <ProjectGuid>{19C2521B-AB34-4D6E-8716-9B5873739DBB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FileSplitter</RootNamespace>
-    <AssemblyName>FileSplitter</AssemblyName>
+    <RootNamespace>WalkeDesigns.FileSplitter</RootNamespace>
+    <AssemblyName>WalkeDesigns.FileSplitter</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -58,9 +58,17 @@
     </ApplicationDefinition>
     <Compile Include="Combiner\Combiner.cs" />
     <Compile Include="Combiner\CombinerViewModel.cs" />
+    <Compile Include="EventExtensions.cs" />
+    <Compile Include="Interfaces\ICancellable.cs" />
     <Compile Include="Interfaces\ICombinerViewModel.cs" />
     <Compile Include="Interfaces\ISplitterViewModel.cs" />
+    <Compile Include="Math.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="OpenBrowser.cs" />
+    <Compile Include="ProgressReportWindow.xaml.cs">
+      <DependentUpon>ProgressReportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProgressWindowViewModel.cs" />
     <Compile Include="Resources\CombinerStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -71,10 +79,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MainWindowStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ProgressWindowStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProgressWindowStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\SplitterStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SplitterStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\TaskNames.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TaskNames.resx</DependentUpon>
     </Compile>
     <Compile Include="Splitter\Splitter.cs" />
     <Compile Include="Splitter\SplitterViewModel.cs" />
@@ -90,6 +108,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProgressReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -117,9 +139,17 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MainWindowStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ProgressWindowStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProgressWindowStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\SplitterStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SplitterStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\TaskNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TaskNames.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">

@@ -1,18 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-
-namespace FileSplitter
+﻿namespace WalkeDesigns.FileSplitter.Interfaces
 {
-    public interface ICombinerViewModel : INotifyPropertyChanged
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+
+    /// <summary>
+    ///  Interface for view models that combine files.
+    /// </summary>
+    public interface ICombinerViewModel : INotifyPropertyChanged, ICancellable
     {
+        /// <summary>
+        ///  Gets or sets the destination path.
+        /// </summary>
         string CombinedPath { get; set; }
+
+        /// <summary>
+        ///  Gets a collection of split source files.
+        /// </summary>
         ObservableCollection<string> SplitPaths { get; }
-        Task Combine();
+
+        /// <summary>
+        ///  Gets or sets the progress report provider.
+        /// </summary>
+        IProgress<int> ProgressReporter { get; set; }
+
+        /// <summary>
+        ///  Combine the selected files.
+        /// </summary>
+        void Combine();
     }
 }

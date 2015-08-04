@@ -4,7 +4,7 @@
         xmlns:res="clr-namespace:WalkeDesigns.FileSplitter.Resources"
         Title="ProgressReportWindow" Height="210" Width="300"
         ShowInTaskbar="False"
-        Topmost="True" WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterOwner"
         WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>

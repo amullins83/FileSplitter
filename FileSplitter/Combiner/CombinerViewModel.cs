@@ -24,7 +24,7 @@ namespace WalkeDesigns.FileSplitter
         /// <summary>
         ///  The provider for progress updates.
         /// </summary>
-        private IProgress<int> progressReporter;
+        private IProgressDescriber progressReporter;
 
         /// <summary>
         ///  The collection of split file paths.
@@ -63,7 +63,7 @@ namespace WalkeDesigns.FileSplitter
         /// <summary>
         ///  Gets or sets the progress reporter.
         /// </summary>
-        public IProgress<int> ProgressReporter
+        public IProgressDescriber ProgressReporter
         {
             get
             {

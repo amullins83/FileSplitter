@@ -27,7 +27,7 @@
         /// <summary>
         ///  Gets or sets the progress report provider.
         /// </summary>
-        IProgress<int> ProgressReporter { get; set; }
+        IProgressDescriber ProgressReporter { get; set; }
 
         /// <summary>
         ///  Splits the source file into chunks.

@@ -23,7 +23,7 @@
         /// <summary>
         ///  Gets or sets the progress report provider.
         /// </summary>
-        IProgress<int> ProgressReporter { get; set; }
+        IProgressDescriber ProgressReporter { get; set; }
 
         /// <summary>
         ///  Combine the selected files.

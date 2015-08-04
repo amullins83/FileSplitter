@@ -29,7 +29,7 @@
         /// <summary>
         ///  Provider for progress updates.
         /// </summary>
-        private IProgress<int> progress;
+        private IProgressDescriber progress;
 
         /// <summary>
         ///  The source file path.
@@ -55,6 +55,11 @@
         ///  A value indicating whether the split work is done.
         /// </summary>
         private bool isDone;
+
+        /// <summary>
+        ///  The current file being processed.
+        /// </summary>
+        private string currentFile;
 
         /// <summary>
         ///  Initializes a new instance of the <see cref="Splitter"/> class.
@@ -83,7 +88,7 @@
             string sourcePath,
             string outputPath,
             int chunkSize,
-            IProgress<int> progress) : this()
+            IProgressDescriber progress) : this()
         {
             this.sourcePath = sourcePath;
             this.outputPath = outputPath;
@@ -154,7 +159,7 @@
         /// <summary>
         ///  Gets or sets the progress report provider.
         /// </summary>
-        public IProgress<int> ProgressReporter
+        public IProgressDescriber ProgressReporter
         {
             get
             {
@@ -274,15 +279,18 @@
                                      !worker.CancellationPending);
                         }
 
+                        currentFile = Path.GetFileName(chunkPath);
                         worker.ReportProgress(chunkCounter * 100 / numChunks);
                     }
                 }
 
+                currentFile = "Done.";
                 worker.ReportProgress(100);
             }
             catch (IOException)
             {
                 e.Cancel = true;
+                currentFile = "Error Occurred.";
                 worker.ReportProgress(100);
             }
         }
@@ -296,9 +304,11 @@
         /// <param name="e">
         ///  The event arguments, includng completion percentage.
         /// </param>
-        private void SendProgressReport(object sender, ProgressChangedEventArgs e)
+        private void SendProgressReport(
+            object sender,
+            ProgressChangedEventArgs e)
         {
-            progress.Report(e.ProgressPercentage);
+            progress.Report(e.ProgressPercentage, currentFile);
         }
 
         /// <summary>

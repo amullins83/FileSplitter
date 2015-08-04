@@ -64,6 +64,7 @@
     <Compile Include="EventExtensions.cs" />
     <Compile Include="Interfaces\ICancellable.cs" />
     <Compile Include="Interfaces\ICombinerViewModel.cs" />
+    <Compile Include="Interfaces\IProgressDescriber.cs" />
     <Compile Include="Interfaces\ISplitterViewModel.cs" />
     <Compile Include="Math.cs" />
     <Compile Include="Model.cs" />

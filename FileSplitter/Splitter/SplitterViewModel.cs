@@ -34,7 +34,7 @@
         /// <summary>
         ///  The progress report provider.
         /// </summary>
-        private IProgress<int> progress;
+        private IProgressDescriber progress;
         
         /// <summary>
         ///  Gets or sets the source file path.
@@ -97,7 +97,7 @@
         /// <summary>
         ///  Gets or sets the progress provider.
         /// </summary>
-        public IProgress<int> ProgressReporter
+        public IProgressDescriber ProgressReporter
         {
             get
             {

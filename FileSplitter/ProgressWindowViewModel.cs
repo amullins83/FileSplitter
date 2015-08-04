@@ -3,10 +3,11 @@
     using System;
     using System.ComponentModel;
 
+    using Interfaces;
     using Utilities;
     using Wpf;
 
-    public class ProgressWindowViewModel : Model, IProgress<int>
+    public class ProgressWindowViewModel : Model, IProgressDescriber
     {
         /// <summary>
         ///  The completion percentage to display.
@@ -77,6 +78,22 @@
             {
                 TaskCompleted.Raise(this);
             }
+        }
+
+        /// <summary>
+        ///  Update the progress bar value and the task description.
+        /// </summary>
+        /// <param name="percentComplete">
+        ///  The fraction of the task which is currently completed,
+        ///  which should always be between 0 and 100, inclusive.
+        /// </param>
+        /// <param name="description">
+        ///  The current sub-task description.
+        /// </param>
+        public void Report(int percentComplete, string description)
+        {
+            Report(percentComplete);
+            TaskName = description;
         }
     }
 }

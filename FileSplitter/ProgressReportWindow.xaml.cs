@@ -8,7 +8,7 @@
     /// <summary>
     ///  Interaction logic for the <see cref="ProgressReportWindow"/> class.
     /// </summary>
-    public partial class ProgressReportWindow : Window, IProgress<int>
+    public partial class ProgressReportWindow : Window, IProgressDescriber
     {
         /// <summary>
         ///  The view model for the window.
@@ -69,6 +69,18 @@
         public void Report(int percentComplete)
         {
             viewModel.Report(percentComplete);
+        }
+
+        /// <summary>
+        ///  Pass along progress reports to the view model.
+        /// </summary>
+        /// <param name="percentComplete">
+        ///  The percentage completed.
+        /// </param>
+        /// <param name="description">The current task name.</param>
+        public void Report(int percentComplete, string description)
+        {
+            viewModel.Report(percentComplete, description);
         }
 
         /// <summary>

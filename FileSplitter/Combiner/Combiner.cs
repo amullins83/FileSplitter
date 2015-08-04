@@ -29,9 +29,14 @@ namespace WalkeDesigns.FileSplitter
         private string destinationPath;
 
         /// <summary>
+        ///  The name of the current file processed.
+        /// </summary>
+        private string currentFile;
+
+        /// <summary>
         ///  The provider for progress updates.
         /// </summary>
-        private IProgress<int> progressReporter;
+        private IProgressDescriber progressReporter;
 
         /// <summary>
         ///  A value indicating whether the task is done.
@@ -73,7 +78,7 @@ namespace WalkeDesigns.FileSplitter
         public Combiner(
             IEnumerable<string> splitPaths,
             string destinationPath,
-            IProgress<int> progressReporter) : this()
+            IProgressDescriber progressReporter) : this()
         {
             this.splitPaths = splitPaths;
             this.destinationPath = destinationPath;
@@ -124,7 +129,7 @@ namespace WalkeDesigns.FileSplitter
         /// <summary>
         ///  Gets or sets the provider for progress reports.
         /// </summary>
-        public IProgress<int> ProgressReporter
+        public IProgressDescriber ProgressReporter
         {
             get
             {
@@ -210,7 +215,9 @@ namespace WalkeDesigns.FileSplitter
         /// </param>
         private void ReportProgress(object sender, ProgressChangedEventArgs e)
         {
-            progressReporter.Report(e.ProgressPercentage);
+            progressReporter.Report(
+                e.ProgressPercentage,
+                currentFile);
         }
 
         /// <summary>
@@ -252,6 +259,7 @@ namespace WalkeDesigns.FileSplitter
                             return;
                         }
 
+                        currentFile = Path.GetFileName(path);
                         worker.ReportProgress(++fileCounter * 100 / numFiles);
                     }
                 }
